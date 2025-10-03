@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agenda</title>
-    <link rel="stylesheet" href="Login.css" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css" />
   </head>
   <body>
     <main class="conteiner">
@@ -19,33 +19,30 @@
           />
           <p id="edu">Educação que transforma</p>
           <h2>SEJA BEM VINDO!</h2>
-          <h1 class="titulo">LOGIN</h1>
+          <h1 class="titulo">NOME</h1>
 
           <div class="campo">
             <img src="pessoa.png" alt="perfil" width="20px" height="20px" />
-            <input type="email" placeholder="info@gmail.com" id="email" />
+            <input type="email" placeholder="Seu nome completo" />
+          </div>
+          <h1 class="titulo">EMAIL</h1>
+          <div class="campo">
+            <img src="pessoa.png" alt="perfil" width="20px" height="20px" />
+            <input type="email" placeholder="info@gmail.com" />
+          </div>
+          <h1 class="titulo">CRIE UMA SENHA</h1>
+          <div class="campo">
+            <img src="cadeado-trancado.png" alt="senha" width="20px" height="20px"/>
+            <input type="password"id="senha" placeholder="Digite sua senha" required/>
           </div>
 
-          <h1 class="titulo">SENHA</h1>
+          <h1 class="titulo">SENHA CRIADA</h1>
           <div class="campo">
-            <img
-              src="cadeado-trancado.png"
-              alt="senha"
-              width="20px"
-              height="20px"
-            />
-            <input type="password" id="senha" placeholder="Digite sua senha" />
-            <img src="visivel.png" id="toggleSenha" alt="mostrar senha" />
-          </div>
-          <div id="esqueceu">
-            <p>Esqueceu sua senha?<a href="#"> Click aqui</a></p>
+            <img src="cadeado-trancado.png" alt="senha" width="20px" height="20px"/>
+            <input type="password" id="senha" placeholder="Confirme sua senha"/>
           </div>
           <button id="entrar">
-            <h1>ENTRAR</h1>
-          </button>
-          <p>Não tem uma conta?</p>
-          <button id="cadastrar">
-            <h1>CADASTRE-SE</h1>
+            <h1>CADASTRAR</h1>
           </button>
         </div>
 

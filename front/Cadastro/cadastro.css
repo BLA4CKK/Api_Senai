@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none; /* Edge/IE */
+}
+
+body {
+  background-color: #cc0000;
+  width: 100vw;
+  height: 100vh;
+}
+
+h1.titulo {
+  margin: 15px 0 5px;
+}
+
+h1 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 15px;
+  align-self: flex-start;
+}
+
+h2 {
+  font-family: "Lato", sans-serif;
+  font-style: italic;
+  margin: 3px 0;
+}
+
+#entrar {
+  width: 250px;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  background-color: #cc0000;
+  color: white;
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+#entrar h1 {
+  font-size: 18px;
+}
+
+#cadastrar {
+  width: 150px;
+  height: 30px;
+  border-radius: 50px;
+  border: none;
+  background-color: #e2e2e2;
+  text-align: center;
+  cursor: pointer;
+  font-style: italic;
+}
+
+#esqueceu {
+  font-size: 14px;
+  margin: 5px 0 15px;
+}
+
+input {
+  width: 250px;
+  height: 30px;
+  border-radius: 50px;
+  border: 1px solid rgb(4, 4, 4);
+  padding-left: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 13px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+.campo {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.campo img {
+  position: absolute;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.campo input {
+  padding-left: 40px;
+  height: 36px;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+
+.toggleSenha {
+  cursor: pointer;
+  pointer-events: auto;
+  right: 10px;
+}
+
+.toggleSenha img {
+  position: absolute;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+a {
+  color: #cc0000;
+  font-size: 14px;
+}
+
+.conteiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.centro {
+  width: 970px;
+  height: 550px;
+  background-color: white;
+  border-radius: 50px;
+  padding: 1px;
+  margin: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.fundo {
+  background-color: #cc0000;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  height: 430px;
+  width: 450px;
+  overflow: hidden;
+}
+
+.rodrigo {
+  border-radius: 50px;
+  opacity: 0.6;
+  width: 450px;
+  height: 435px;
+}
+
+.logo {
+  padding: 0;
+  margin-top: 0;
+}
+
+#edu {
+  margin: 5px 0 5px;
+}
