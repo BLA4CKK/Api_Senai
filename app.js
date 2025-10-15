@@ -12,6 +12,11 @@ app.post("/cadastro", async (req, res)=>{
   const cadastro = await sql `INSERT INTO USUARIO(email, nome, senha) values(${email}, ${nome}, ${senha})`
   return res.status(200).json({message: 'Cadastro realizado'})
 })
+
+app.patch("/mudarlogin", async (req, res)=>{
+  const
+})
+
 app.listen(3000, () => {
   console.log("Cu")
 })
