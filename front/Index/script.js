@@ -12,9 +12,12 @@ cadastro.addEventListener("click", async () => {
       email,
     }),
   });
-  console.log(res);
+  
+  //
+  const tete = await res.json();
   if (res.status == 200) {
+   localStorage.setItem("id", tete.id_usuario);
     window.location.href = "../Inicial/Inicio.html";
-  }
-  alert("Usuário ou senha incorretos");
+  } 
+  else return alert("Usuário ou senha incorretos");
 });
