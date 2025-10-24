@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Senha deve conter ao menos 8 caracteres")
       return
     }
+    if (senha !== criada){
+      alert("Senhas não coincidem")
+      return
+    }
 
     const res = await fetch("http://192.168.1.22:3000/cadastro/novo", {
       method: "POST",
@@ -39,4 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mail.value = "";
     name.value = "";
   });
+
+
+
 });
