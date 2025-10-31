@@ -34,4 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+cancelar.addEventListener("click", async () => {
+  window.location.href = '../Inicial/inicio.html'
+
+})
+
 });
