@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CheckList</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="check.css" />
+</head>
+
+<body>
+    <header>
+        <img id="Sesi" src="Sesi.jpg" />
+        <div id="elementos">
+            <svg class="usuario" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+            </svg>
+
+            <svg class="usuario" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                <path fill-rule="evenodd"
+                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+            </svg>
+        </div>
+    </header>
+
+    <div class="menu">
+        <div class="add">
+            <button class="bot">
+                <img class="mais" src="adicionar.png" alt="adicionar" width="25px" height="25px" />
+                <p>Adicionar mais listas</p>
+            </button>
+        </div>
+
+        <div class="botao">
+            <div>
+                <button id="teste">
+                    <img src="desfazer.png" alt="config" width="20px" height="20px" />
+                    <p>Desfazer</p>
+                </button>
+            </div>
+
+            <div>
+                <button id="icon">
+                    <img src="historia.png" alt="config" width="20px" height="20px" />
+                    <p>Histórico</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="minhaClasse">
+        <img id="checklist" src="site.png" width="65px" height="60px" />
+        <div id="linha">
+            <p id="LISTA">Minhas listas</p id="LISTA">
+            <h3>TAREFAS</h3>
+        </div>
+        <div id="selecionar">
+            <button class="ficha-ativo" id="Professor">Professor</button>
+            <button class="ficha-ativo" id="Secretaria">Secretaria</button>
+            <button class="ficha-ativo" id="Direcao">Direção</button>
+            <button class="ficha-ativo" id="Inspetor">Inspetor</button>
+        </div>
+        </div>
+
+
+    <section>
+        <div id="caixa">
+          <div id="info">
+            <p>Função</p>
+            <p>Data e Hora</p>
+            <p>Pessoa</p>
+            <p>Localização</p>
+            <p>Prazo</p>
+          </div>
+          <div id="tarefas">
+        </div>
+    </section>
+
+    <!-- Painel lateral do histórico -->
+    <div id="painelHistorico" class="painel-historico">
+        <button class="fechar" onclick="fecharHistorico()"><b>X</b></button>
+        <h2>Histórico</h2>
+    </div>
+
+    <!-- Painel para adicionar nova lista -->
+    <dialog id="testeRo" class="painel">
+        <div class="topo">
+            <div id="novalista">
+            <h2>Novas Tarefas</h2>
+        </div id="novalista">
+        <button class="fechar" onclick="fecharAdicionarLista()"><b>X</b></button>
+        </div class="topo">
+       
+        <div class="centro">
+            <p>Função:</p>
+            <input type="text" name="" id="" placeholder="Insiria sua função">
+            <p>Data e Hora:</p>
+            <input type="text" name="" id="" placeholder="Insiria sua data e hora ">
+            <p>Pessoa Responsável:</p>
+            <input type="text" name="" id="" placeholder="Insira um nome ou um e-mail">
+            <p>Localização:</p>
+            <input type="text" name="" id="" placeholder="Insira uma localização">
+            <p> Nível de Urgência:</p>
+            <select name="Dificuldade" id="nivel">
+                <option id="verde">Não Urgente</option>
+                <option  id="amarelo">Meio Urgente</option>
+                <option  id="vermelho">Urgente</option>
+            </select>
+            <button id="salvar"><b>Salvar</b></button>
+        </div>
+    </dialog>
+    <script src="check.js"></script>
+</body>
+
+</html>
