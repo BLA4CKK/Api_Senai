@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
   salvar.addEventListener("click", async () => {
     const senha = passAtual.value;
     const senha_N = novaPass.value;
+    const confirma = confirmPass
     const id_usuario = localStorage.getItem("id_usuario")
 
-    if(senha_N != senha ){
+    if(senha_N != confirma){
         alert('Senha incorreta no campo de confirmação')
         return
 
