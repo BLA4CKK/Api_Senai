@@ -16,6 +16,7 @@ cadastro.addEventListener("click", async () => {
   const capt = await res.json();
   if (res.status == 200) {
     localStorage.setItem("id_usuario", capt.id_usuario);
+    localStorage.setItem("cargo", capt.cargo)
     return window.location.href = "../Inicial/Inicio.html";
   }  return alert("Usuário ou senha incorretos");
 });

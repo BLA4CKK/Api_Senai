@@ -43,6 +43,18 @@ app.put("/mudarSenha", async (req, res) => {
   return res.status(401).json({ message: "bla" });
 });
 
+app.post("/checklist", async (req, res) => {
+  const { funcao, data, localizacao, urgencia, id_usuario} = req.body
+
+  const criar = await sql `INSERT INTO requisicao(nivel_urgencia, funcao, data_requisicao, localizacao, id_usuario) VALUES(${urgencia}, ${funcao}, ${data}, ${localizacao}, ${id_usuario})`;
+  return res.status(200).json(criar[0])
+})
+
+app.get("/MostrarTarefa", async () => {
+  const mostrar = await sql `SELECT * FROM requisicao WHERE ${id_usuario}`
+
+})
+
 app.listen(3000, () => {
   console.log("Cu");
 });
