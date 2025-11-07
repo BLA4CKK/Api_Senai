@@ -287,6 +287,21 @@ p {
   padding: 10px;
   border-radius: 10px;
 }
+.tarefas {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+}
+.tarefas p {
+  margin: 0;
+  padding: 8px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+}
 
 #info p {
   margin: 0;

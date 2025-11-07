@@ -68,7 +68,6 @@
         </div>
         </div>
 
-
     <section>
         <div id="caixa">
           <div id="info">
@@ -79,6 +78,8 @@
             <p>Prazo</p>
           </div>
           <div id="tarefas">
+            
+          </div>
         </div>
     </section>
 
@@ -101,11 +102,18 @@
             <p>Função:</p>
             <input type="text" name="" id="funcao" placeholder="Insiria sua função">
             <p>Data e Hora:</p>
-            <input type="date" name="" id="data" placeholder="Insiria sua data e hora ">
+            <input type="datetime-local" name="" id="data" placeholder="Insiria sua data e hora ">
+            <p>Prazo:</p>
+            <input type="datetime-local" name="" id="prazo" placeholder="Estipule um prazo: ">
             <p>Pessoa Responsável:</p>
             <input type="text" name="" id="reposavel" placeholder="Insira um nome ou um e-mail">
             <p>Localização:</p>
-            <input type="text" name="" id="local" placeholder="Insira uma localização">
+            <select name="" id="local">
+                <option id="">Professor</option>
+                <option  id="">Secretaria</option>
+                <option  id="">Inspetor</option>
+                <option  id="">Direção</option>
+            </select>
             <p> Nível de Urgência:</p>
             <select name="Dificuldade" id="nivel">
                 <option id="verde">Não Urgente</option>
@@ -114,6 +122,7 @@
             </select>
             <button id="salvar"><b>Salvar</b></button>
         </div>
+     
     </dialog>
     <script src="check.js"></script>
 </body>

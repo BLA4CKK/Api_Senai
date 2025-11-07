@@ -44,15 +44,21 @@ app.put("/mudarSenha", async (req, res) => {
 });
 
 app.post("/checklist", async (req, res) => {
-  const { funcao, data, localizacao, urgencia, id_usuario} = req.body
+  const { funcao, data, localizacao, urgencia, id_usuario, prazo} = req.body
 
-  const criar = await sql `INSERT INTO requisicao(nivel_urgencia, funcao, data_requisicao, localizacao, id_usuario) VALUES(${urgencia}, ${funcao}, ${data}, ${localizacao}, ${id_usuario})`;
+  const criar = await sql `INSERT INTO requisicao(nivel_urgencia, funcao, data_requisicao, localizacao, id_usuario, prazo) VALUES(${urgencia}, ${funcao}, ${data}, ${localizacao}, ${id_usuario}, ${prazo})`;
   return res.status(200).json(criar[0])
 })
 
-app.get("/MostrarTarefa", async () => {
-  const mostrar = await sql `SELECT * FROM requisicao WHERE ${id_usuario}`
-
+app.get("/MostrarTarefa/:cargo", async (req, res) => {
+  const {cargo} = req.params
+  const mostrar = await sql `SELECT 
+  *
+FROM requisicao
+JOIN usuario 
+ON requisicao.localizacao = usuario.cargo
+where usuario.cargo = 'Professor'`
+ return res.status(200).json(mostrar)
 })
 
 app.listen(3000, () => {
