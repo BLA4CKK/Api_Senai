@@ -57,7 +57,7 @@ app.get("/MostrarTarefa/:cargo", async (req, res) => {
 FROM requisicao
 JOIN usuario 
 ON requisicao.localizacao = usuario.cargo
-where usuario.cargo = 'Professor'`
+where usuario.cargo = ${cargo}`
  return res.status(200).json(mostrar)
 })
 
