@@ -87,6 +87,12 @@ p {
   align-items: center;
   position: relative;
 }
+.camposelect {
+  width: 100%;
+  display: flex;
+  align-items: start;
+  position: relative;
+}
 
 .campo img {
   position: absolute;
@@ -131,10 +137,9 @@ a {
 
 .centro {
   width: 970px;
-  height: 550px;
   background-color: white;
   border-radius: 50px;
-  padding: 1px;
+  padding: 10px;
   margin: 1px;
   display: flex;
   align-items: center;
@@ -181,4 +186,8 @@ a {
 
 alert{
   color: red;
+}
+select{
+  width: 100%;
+  padding: 5px ;
 }

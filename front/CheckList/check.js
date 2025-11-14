@@ -46,9 +46,9 @@ botoes.forEach((botao) => {
   } else if (cargo == "Secretaria") {
     if (botao.id == "Direcao" || botao.id == "Professor") {
       botao.style.display = "none";
-    } else {
-      return;
     }
+  } else {
+    console.log("Olá diretora");
   }
   botao.addEventListener("click", () => {
     abrirabas(botao);
@@ -75,13 +75,13 @@ async function renderAtiv(setor) {
   const result = await fetch(`http://192.168.1.22:3000/MostrarTarefa/${setor}`);
   const resultados = await result.json();
   const tarefas = document.querySelector("#tarefas");
-  tarefas.innerHTML='';
+  tarefas.innerHTML = "";
   if (result.status != 200) {
     return (tarefas.innerText = "Nenhuma atividade registrada");
   }
   resultados.forEach((m) => {
-    const caixa = document.createElement('div');
-    caixa.classList='tarefas'
+    const caixa = document.createElement("div");
+    caixa.classList = "tarefas";
     caixa.innerHTML = `
       <p>${m.funcao}</p>
       <p>${m.data_requisicao}</p>

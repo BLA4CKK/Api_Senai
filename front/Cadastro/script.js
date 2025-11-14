@@ -4,14 +4,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const name = document.getElementById("nome");
   const buttonEntrar = document.getElementById("entrar");
   const senhaCriada = document.getElementById("senha_criada");
+  const Cargo = document.querySelector  ("#selectCargo")
 
   buttonEntrar.addEventListener("click", async () => {
     let senha = pass.value;
     let email = mail.value;
     let nome = name.value;
     let criada = senhaCriada.value;
+    let cargo = Cargo.value
 
-    if (senha == '' || email =='' ||  criada== '' || nome == '' ){
+
+    if (senha == '' || email =='' ||  criada== '' || nome == '' || cargo == '' ){
       alert('Nenhum campo deve permanecer vazio')
       return
     }
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
         senha,
         email,
         nome,
+        cargo
       }),
     });
     console.log(res);

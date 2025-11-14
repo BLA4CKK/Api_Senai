@@ -6,12 +6,12 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Rota para cadastro de novo usuario. Ele entra como professor, cargo mais baixo, trocar par indefinido o cargo.
+// Rota para cadastro de novo usuario.
 app.post("/cadastro/novo", async (req, res) => {
-  const { senha, nome, email } = req.body;
+  const { senha, nome, email,cargo } = req.body;
   console.log("cadastrado");
   const cadastro =
-    await sql`INSERT INTO USUARIO(email, nome, cargo, senha ) values(${email}, ${nome},'Professor', ${senha} )`;
+    await sql`INSERT INTO USUARIO(email, nome, cargo, senha ) values(${email}, ${nome}, ${cargo}, ${senha} )`;
   return res.status(200).json(cadastro[0]);
 });
 

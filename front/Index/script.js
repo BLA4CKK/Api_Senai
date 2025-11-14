@@ -1,6 +1,6 @@
-const cadastro = document.querySelector("#entrar");
-
-cadastro.addEventListener("click", async () => {
+const entrar = document.querySelector("#entrar");
+const Cadastrar = document.querySelector("#cadastrar")
+entrar.addEventListener("click", async () => {
   const email = document.querySelector("#email").value;
   const senha = document.querySelector("#senha").value;
 
@@ -20,3 +20,7 @@ cadastro.addEventListener("click", async () => {
     return window.location.href = "../Inicial/Inicio.html";
   }  return alert("Usuário ou senha incorretos");
 });
+
+Cadastrar.addEventListener("click", async () => {
+  window.location.href = "../Cadastro/cadastro.html"
+})
