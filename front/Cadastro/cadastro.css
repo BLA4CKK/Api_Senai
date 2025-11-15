@@ -110,6 +110,15 @@ p {
 
 
 .toggleSenha {
+  position: absolute;
+  right: 10px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+
+/* .toggleSenha {
   cursor: pointer;
   pointer-events: auto;
   right: 10px;
@@ -120,7 +129,7 @@ p {
   right: 10px;
   width: 20px;
   height: 20px;
-}
+} */
 
 a {
   color: #cc0000;

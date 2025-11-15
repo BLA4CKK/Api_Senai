@@ -1,5 +1,6 @@
 const entrar = document.querySelector("#entrar");
-const Cadastrar = document.querySelector("#cadastrar")
+const Cadastrar = document.querySelector("#cadastrar");
+const change = document.querySelector("#toggleSenha");
 entrar.addEventListener("click", async () => {
   const email = document.querySelector("#email").value;
   const senha = document.querySelector("#senha").value;
@@ -23,4 +24,13 @@ entrar.addEventListener("click", async () => {
 
 Cadastrar.addEventListener("click", async () => {
   window.location.href = "../Cadastro/cadastro.html"
+})
+
+change.addEventListener("click", async () => {
+  if(senha.getAttribute('type') == 'password'){
+    senha.setAttribute('type', 'text')
+  } else{
+    senha.setAttribute('type','password')
+  }
+  
 })
