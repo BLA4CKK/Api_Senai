@@ -27,6 +27,7 @@ Cadastrar.addEventListener("click", async () => {
 })
 
 change.addEventListener("click", async () => {
+  const senha = document.querySelector("#senha")
   if(senha.getAttribute('type') == 'password'){
     senha.setAttribute('type', 'text')
   } else{

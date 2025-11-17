@@ -1,5 +1,6 @@
 const salvar = document.getElementById("salvar");
 const id_usuario = localStorage.getItem("id_usuario");
+const desfazer = document.getElementById("desfazer")
 
 // Quando clicar no botão "Histórico", abre o painel
 const btnHistorico = document.querySelector(
@@ -38,17 +39,21 @@ botoes.forEach((botao) => {
   if (cargo == "Professor") {
     if (botao.id == "Direcao" || botao.id == "Secretaria") {
       botao.style.display = "none";
+      desfazer.style.display ="none"
     }
   } else if (cargo == "Inspetor") {
     if (botao.id == "Direcao" || botao.id == "Secretaria") {
       botao.style.display = "none";
+      desfazer.style.display ="none"
     }
   } else if (cargo == "Secretaria") {
     if (botao.id == "Direcao" || botao.id == "Professor") {
       botao.style.display = "none";
+      desfazer.style.display ="none"
     }
   } else {
     console.log("Olá diretora");
+    
   }
   botao.addEventListener("click", () => {
     abrirabas(botao);

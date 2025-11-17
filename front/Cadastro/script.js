@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttonEntrar = document.getElementById("entrar");
   const senhaCriada = document.getElementById("senha_criada");
   const Cargo = document.querySelector  ("#selectCargo")
+  const change = document.querySelector(".toggleSenha");
 
   buttonEntrar.addEventListener("click", async () => {
     let senha = pass.value;
@@ -47,6 +48,16 @@ document.addEventListener("DOMContentLoaded", () => {
     mail.value = "";
     name.value = "";
   });
+
+  change.addEventListener("click", async () => {
+  const senha = document.querySelector("#senha")
+  if(senha.getAttribute('type') == 'password' || senhaCriada.getAttribute('type' == 'password')){
+    senha.setAttribute('type', 'text')
+  } else{
+    senha.setAttribute('type','password')
+  }
+  
+})
 
 
 

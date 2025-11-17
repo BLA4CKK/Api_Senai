@@ -87,18 +87,30 @@ p {
   align-items: center;
   position: relative;
 }
+
+.campo img {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+
+.campo input {
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 36px;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+.campo img:first-child {
+  left: 10px; /*olhar isso depois*/
+  pointer-events: none;
+}
 .camposelect {
   width: 100%;
   display: flex;
   align-items: start;
   position: relative;
-}
-
-.campo img {
-  position: absolute;
-  left: 10px;
-  width: 20px;
-  height: 20px;
 }
 
 .campo input {

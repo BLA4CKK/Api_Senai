@@ -73,7 +73,7 @@ header {
 }
 
 #icon,
-#teste {
+#desfazer {
   height: 35px;
   border: none;
   display: flex;
@@ -87,7 +87,7 @@ header {
 }
 
 #icon p,
-#teste p {
+#desfazer p {
   margin: 0;
   color: #cc0000;
   font-size: 15px;
