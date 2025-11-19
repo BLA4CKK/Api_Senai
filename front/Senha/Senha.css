@@ -31,6 +31,13 @@
     height: 45px;
     width: auto;
 }
+    #sair {
+    height: 40px;
+    width: auto;
+    color: white;
+    
+    
+}
 .usuario {
   color: white;
   height: 35px;
@@ -122,4 +129,8 @@
         cursor: pointer;
     }
 
-
+button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
