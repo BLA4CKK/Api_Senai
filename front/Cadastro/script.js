@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log(res);
     alert(res);
     if (res.status == 200) {
-      document.location.href = "../Index/Login.html";
+      document.location.href = "../Index/index.html";
     }
 
     pass.value = "";

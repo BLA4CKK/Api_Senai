@@ -50,17 +50,17 @@ const botoes = document.querySelectorAll(".ficha-ativo");
 botoes.forEach((botao) => {
   const cargo = localStorage.getItem("cargo");
   if (cargo == "Professor") {
-    if (botao.id == "Direcao" || botao.id == "Secretaria") {
+    if (botao.id == "Direção" || botao.id == "Secretaria") {
       botao.style.display = "none";
       desfazer.style.display = "none";
     }
   } else if (cargo == "Inspetor") {
-    if (botao.id == "Direcao" || botao.id == "Secretaria") {
+    if (botao.id == "Direção" || botao.id == "Secretaria") {
       botao.style.display = "none";
       desfazer.style.display = "none";
     }
   } else if (cargo == "Secretaria") {
-    if (botao.id == "Direcao" || botao.id == "Professor") {
+    if (botao.id == "Direção" || botao.id == "Professor") {
       botao.style.display = "none";
       desfazer.style.display = "none";
     }
@@ -81,7 +81,7 @@ function abrirabas(botaoClicado) {
     ? renderAtiv(botaoClicado.id)
     : botaoClicado.id == "Secretaria"
     ? renderAtiv(botaoClicado.id)
-    : botaoClicado.id == "Direcao"
+    : botaoClicado.id == "Direção"
     ? renderAtiv(botaoClicado.id)
     : botaoClicado.id == "Inspetor"
     ? renderAtiv(botaoClicado.id)
