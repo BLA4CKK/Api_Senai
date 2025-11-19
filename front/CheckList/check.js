@@ -1,6 +1,7 @@
 const salvar = document.getElementById("salvar");
 const id_usuario = localStorage.getItem("id_usuario");
-const desfazer = document.getElementById("desfazer")
+const desfazer = document.getElementById("desfazer");
+const responsavel = document.getElementById("responsavel");
 
 // Quando clicar no botão "Histórico", abre o painel
 const btnHistorico = document.querySelector(
@@ -16,8 +17,20 @@ function fecharHistorico() {
 }
 
 const btnADClista = document.querySelector(".bot");
-btnADClista.addEventListener("click", function () {
+btnADClista.addEventListener("click", async () => {
   const modal = document.querySelector("dialog.painel");
+
+  responsavel.innerHTML = "";
+  const result = await fetch("http://192.168.1.22:3000/ListarUsers");
+  const resultados = await result.json();
+  resultados.forEach((m) => {
+    const option = document.createElement("option");
+    option.innerText = m.nome;
+    option.value = m.nome;
+
+    responsavel.appendChild(option);
+  });
+
   modal.showModal();
 });
 
@@ -39,21 +52,20 @@ botoes.forEach((botao) => {
   if (cargo == "Professor") {
     if (botao.id == "Direcao" || botao.id == "Secretaria") {
       botao.style.display = "none";
-      desfazer.style.display ="none"
+      desfazer.style.display = "none";
     }
   } else if (cargo == "Inspetor") {
     if (botao.id == "Direcao" || botao.id == "Secretaria") {
       botao.style.display = "none";
-      desfazer.style.display ="none"
+      desfazer.style.display = "none";
     }
   } else if (cargo == "Secretaria") {
     if (botao.id == "Direcao" || botao.id == "Professor") {
       botao.style.display = "none";
-      desfazer.style.display ="none"
+      desfazer.style.display = "none";
     }
   } else {
     console.log("Olá diretora");
-    
   }
   botao.addEventListener("click", () => {
     abrirabas(botao);
@@ -90,7 +102,7 @@ async function renderAtiv(setor) {
     caixa.innerHTML = `
       <p>${m.funcao}</p>
       <p>${m.data_requisicao}</p>
-      <p>${m.nome}</p>
+      <p>${m.destinatario_req}</p>
       <p>${m.localizacao}</p>
       <p>${m.prazo}</p>
     `;
@@ -101,11 +113,10 @@ async function renderAtiv(setor) {
 salvar.addEventListener("click", async () => {
   const funcao = document.querySelector("#funcao").value;
   const data = document.querySelector("#data").value;
-  const responsavel = document.querySelector("#reposavel").value;
+  const responsavel = document.querySelector("#responsavel").value;
   const localizacao = document.querySelector("#local").value;
   const urgencia = document.querySelector("#nivel").value;
   const prazo = document.querySelector("#prazo").value;
-
   const res = await fetch("http://192.168.1.22:3000/checklist", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -116,6 +127,7 @@ salvar.addEventListener("click", async () => {
       urgencia,
       id_usuario,
       prazo,
+      responsavel,
     }),
   });
   fecharAdicionarLista();
