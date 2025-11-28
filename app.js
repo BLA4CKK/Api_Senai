@@ -49,7 +49,7 @@ app.put("/mudarSenha", async (req, res) => { // define uma rota PUT para a URL "
     return res.status(201).json({message : "teste"}); //retorna uma resposta de sucesso
   }
   return res.status(401).json({ message: "bla" }); // se for falso, retona uma mensagem de erro
-});
+})
 
 // nesse trecho estamos definindo uma rota para mudar a senha do usuario, verificando se a senha atual corresponde ao id do usuario, atualizando a senha no banco de dados e retornando uma resposta de sucesso ou mensagem de erro conforme o caso.
 
@@ -75,6 +75,14 @@ app.get("/ListarUsers", async (req, res) => {  // define uma rota GET para a URL
   const listar = await sql `SELECT id_usuario, nome FROM usuario;` // cria uma constante 'listar' que armazena o resultado da consulta SQL para selecionar o id e nome de todos os usuarios no banco de dados
   return res.status(200).json(listar) //retorna uma resposta de sucesso com os dados dos usuarios em formato JSON
 
+})
+
+app.delete("/Apagar_Req/:id", async(req, res)=>{
+  const {id}= req.params
+  const apagar = await sql `DELETE FROM requisicao
+WHERE id_requisicao = ${id};
+`
+return res.status(200).json(apagar)
 })
 
 app.listen(3000, () => { // inicia o servidor na porta 3000
