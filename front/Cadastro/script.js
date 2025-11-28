@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { // garante que o código dentro só será executado após o carregamento completo do DOM
   const pass = document.getElementById("senha");
   const mail = document.getElementById("email");
   const name = document.getElementById("nome");
@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const senhaCriada = document.getElementById("senha_criada");
   const Cargo = document.querySelector  ("#selectCargo")
   const change = document.querySelector(".toggleSenha");
+
 
   buttonEntrar.addEventListener("click", async () => {
     let senha = pass.value;
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return
     }
 
-    const res = await fetch("http://192.168.1.22:3000/cadastro/novo", {
+    const res = await fetch("http://192.168.1.22:3000/cadastro/novo", { // faz uma requisição para a URL fornecida
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -53,12 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const senha = document.querySelector("#senha")
   if(senha.getAttribute('type') == 'password' || senhaCriada.getAttribute('type' == 'password')){
     senha.setAttribute('type', 'text')
+    senhaCriada.setAttribute('type', 'text')
   } else{
     senha.setAttribute('type','password')
+    senhaCriada.setAttribute('type','password')
   }
   
 })
-
-
-
 });

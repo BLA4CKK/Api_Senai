@@ -5,11 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const salvar = document.getElementById("bsave");
   const cancelar = document.getElementById("bcancel");
   const vazio = document.querySelector('.vazia')
+  const sair = document.getElementById("sair")
 
   salvar.addEventListener("click", async () => {
     const senha = passAtual.value;
     const senha_N = novaPass.value;
-    const confirma = confirmPass
+    const confirma = confirmPass.value
     const id_usuario = localStorage.getItem("id_usuario")
 
     if(senha_N != confirma){
@@ -18,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    const res = await fetch("http://192.168.1.22:3000/mudarSenha", {
-      method: "PUT",
+    const res = await fetch("http://192.168.1.22:3000/mudarSenha", { // faz uma requisição para a URL fornecida
+      method: "PUT", //atualizar 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         senha,
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         id_usuario
       }),
     });
-    if(res.status==201){
+    if(res.status==201){ 
         const div = document.createElement('div');
         div.innerText = 'Cadastro realizado';
         vazio.appendChild(div);
@@ -37,7 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 cancelar.addEventListener("click", async () => {
   window.location.href = '../Inicial/inicio.html'
-
 })
 
+sair.addEventListener("click", () => {
+  localStorage.clear()
+  window.location.href = '../Index/index.html'
+})
 });
