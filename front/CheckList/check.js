@@ -1,4 +1,4 @@
-const salvar = document.getElementById("salvar");
+let salvar = document.getElementById("salvar");
 const id_usuario = localStorage.getItem("id_usuario");
 const desfazer = document.getElementById("desfazer");
 const responsavel = document.getElementById("responsavel");
@@ -20,21 +20,20 @@ const apagar = document.getElementById("desfazer");
 const btnADClista = document.querySelector(".bot"); //botão de adicionar lista
 btnADClista.addEventListener("click", async () => {
   //adiciona o evento de clique
-  const modal = document.querySelector("dialog.painel"); //pega o dialog com a classe painel
+  const modal = document.querySelector("dialog.painel");
 
-  responsavel.innerHTML = ""; //limpa as opções anteriores
-  const result = await fetch("http://192.168.1.22:3000/ListarUsers"); //busca os usuários
-  const resultados = await result.json(); // converte a resposta para json
+  responsavel.innerHTML = "";
+  const result = await fetch("http://192.168.1.22:3000/ListarUsers");
+  const resultados = await result.json();
   resultados.forEach((m) => {
-    // resultados é um array, então percorre cada usuário
-    const option = document.createElement("option"); //cria um elemento option
-    option.innerText = m.nome; //define o texto do option como o nome do usuário
-    option.value = m.nome; //define o valor do option como o nome do usuário
+    const option = document.createElement("option");
+    option.innerText = m.nome;
+    option.value = m.nome;
 
-    responsavel.appendChild(option); //adiciona o option ao select de responsavel
+    responsavel.appendChild(option);
   });
 
-  modal.showModal(); //mostra o modal
+  modal.showModal();
 });
 
 // Função pra fechar o painel
@@ -78,15 +77,13 @@ botoes.forEach((botao) => {
 });
 
 function abrirabas(botaoClicado) {
-  //função para abrir a aba
   botoes.forEach((b) => {
-    //para cada botão
-    b.style.background = ""; // volta pro padrão
+    b.style.background = "";
   });
-  botaoClicado.style.background = "#ffffffff"; //muda a cor do botão clicado
+  botaoClicado.style.background = "#ffffffff";
   botaoClicado.id == "Professor"
-    ? renderAtiv(botaoClicado.id) //chama a função para renderizar as atividades
-    : botaoClicado.id == "Secretaria" //
+    ? renderAtiv(botaoClicado.id)
+    : botaoClicado.id == "Secretaria"
     ? renderAtiv(botaoClicado.id)
     : botaoClicado.id == "Direção"
     ? renderAtiv(botaoClicado.id)
@@ -105,36 +102,34 @@ async function renderAtiv(setor) {
       "<p>Nenhuma atividade registrada neste setor</p>");
   }
   !resultados.forEach((m) => {
-    //para cada tarefa
-
-    const date = new Date(m.data_requisicao); //data da requisição
+    const date = new Date(m.data_requisicao);
     const options = {
-      //opções de formatação da data
-      day: "2-digit", //formato dia com dois dígitos
-      month: "2-digit", //formato mês com dois dígitos
-      year: "numeric", //formato ano com quatro dígitos
-      timeZone: "UTC", //define o fuso horário como UTC
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      timeZone: "UTC",
     };
-    const dataFormatada = date.toLocaleDateString("pt-BR", options); //formata a data para o padrão brasileiro
+    const dataFormatada = date.toLocaleDateString("pt-BR", options);
 
-    const prazo = new Date(m.prazo); //data do prazo
-    const prazoFormatado = prazo.toLocaleDateString("pt-BR", options); //formata a data do prazo para o padrão brasileiro
+    const prazo = new Date(m.prazo);
+    const prazoFormatado = prazo.toLocaleDateString("pt-BR", options);
 
     const caixa = document.createElement("div"); //cria uma div para a tarefa
     caixa.classList = "tarefas"; //define a classe da div como tarefas
     caixa.innerHTML = ` 
-      <p>${m.funcao}</p>
-      <p>${dataFormatada}</p>
-      <p>${m.destinatario_req}</p>
-      <p>${m.localizacao}</p>
-      <p>${prazoFormatado}</p>
+      <p id="funcao_${m.id_requisicao}">${m.funcao}</p>
+      <p id="data_${m.id_requisicao}">${dataFormatada}</p>
+      <p id="destinatario_${m.id_requisicao}">${m.destinatario_req}</p>
+      <p id="localizacao_${m.id_requisicao}">${m.localizacao}</p>
+      <p id="prazo_${m.id_requisicao}">${prazoFormatado}</p>
       <button onclick="deletar(${m.id_requisicao})">🗑</button>
+      <button onclick="editar(${m.id_requisicao})">🖊</button>
     `; //adiciona o conteúdo da tarefa à div
 
     // Define a cor de fundo com base no nível de urgência
 
     if (m.nivel_urgencia == "Normal") {
-      caixa.style.  backgroundColor = "rgba(253, 253, 84, 0.59)";
+      caixa.style.backgroundColor = "rgba(253, 253, 84, 0.59)";
     }
     if (m.nivel_urgencia == "Não Urgente") {
       caixa.style.backgroundColor = "rgba(58, 253, 87, 0.59)";
@@ -180,6 +175,10 @@ salvar.addEventListener("click", async () => {
       responsavel,
     }),
   });
+  if(res.status == 200){
+    alert("Criado")
+    return location.reload()
+  }
   fecharAdicionarLista();
 });
 
@@ -187,10 +186,95 @@ async function deletar(id) {
   const res = await fetch(`http://192.168.1.22:3000/Apagar_req/${id}`, {
     method: "DELETE",
   });
-  
-  if(res.status == 200){
-    alert("Excluido")
-    window.location.reload
+
+  if (res.status == 200) {
+    alert("Excluido");
+   return location.reload()
+    
   }
+}
+
+async function editar(id) {
+  let new_botao = salvar.cloneNode(true);
+  salvar.parentNode.replaceChild(new_botao, salvar);
+  salvar = new_botao;
+
+  const modal = document.querySelector("dialog.painel");
+  modal.showModal();
+
+  document.querySelector("#funcao").value = document.querySelector(
+    `#funcao_${id}`
+  ).innerText;
+  const date = new Date(document.querySelector(`#data_${id}`).innerText);
+
+  // IMPORTANTE ---------------------------------------------------------------------------------------
+  // Qualquer data que venha de new Date() VAI vir no padrao mm/dd/yyyy, por isso no final na hora de
+  // montar a string final esta invertido como: year-day-month
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  const formattedDate = `${year}-${day}-${month}T00:00`;
+  document.querySelector("#data").value = formattedDate;
+
+  const prazo = new Date(document.querySelector(`#prazo_${id}`).innerText);
+  const day_prazo = String(prazo.getDate()).padStart(2, "0");
+  const month_prazo = String(prazo.getMonth() + 1).padStart(2, "0");
+  const year_prazo = prazo.getFullYear();
+  const formattedDate_prazo = `${year_prazo}-${day_prazo}-${month_prazo}T00:00`;
+  document.querySelector("#prazo").value = formattedDate_prazo;
+
+  const result = await fetch("http://192.168.1.22:3000/ListarUsers");
+  const resultados = await result.json();
+  const pessoa_responsavel = document.querySelector(`#destinatario_${id}`);
+  resultados.forEach((m) => {
+    const option = document.createElement("option");
+    option.innerText = m.nome;
+    option.value = m.nome;
+    if (pessoa_responsavel.innerText == option.value) {
+      console.log(option.value);
+      option.selected = true;
+    }
+    responsavel.appendChild(option);
+  });
+
   
+
+  
+  // document.querySelector("#nivel").value = document.querySelector(`#data_${id}`);
+  // document.querySelector("#local").value = document.querySelector(`#localizacao_${id}`).innerText;
+
+  salvar.addEventListener("click", async () => {
+    const funcao = document.querySelector("#funcao").value;
+    const data = document.querySelector("#data").value;
+    const responsavel = document.querySelector("#responsavel").value;
+    const localizacao = document.querySelector("#local").value;
+    const urgencia = document.querySelector("#nivel").value;
+    const prazo = document.querySelector("#prazo").value;
+    console.log(funcao,
+        data,
+        localizacao,
+        urgencia,
+        id_usuario,
+        prazo,
+        responsavel)
+
+    const res = await fetch(`http://192.168.1.22:3000/Editar_Req/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        funcao,
+        data,
+        localizacao,
+        urgencia,
+        prazo,
+        responsavel
+      }),
+    });
+    if(res.status == 200){
+      alert("Editado")
+      return location.reload()
+    }
+    fecharAdicionarLista();
+    
+  });
 }
