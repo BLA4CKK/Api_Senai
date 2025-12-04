@@ -5,7 +5,7 @@ entrar.addEventListener("click", async () => { // adiciona um evento de clique a
   const email = document.querySelector("#email").value; // seleciona o elemento com o id "email" e pega o valor digitado, armazenando na constante 'email'
   const senha = document.querySelector("#senha").value; // seleciona o elemento com o id "senha" e pega o valor digitado, armazenando na constante 'senha'
  
-  const res = await fetch("http://192.168.1.22:3000/login", { // faz uma requisição para a URL fornecida 
+  const res = await fetch("http://localhost:3000/login", { // faz uma requisição para a URL fornecida 
     method: "POST", // define o método da requisição como POST
     headers: { "Content-Type": "application/json" }, // define o cabeçalho da requisição para indicar que o corpo é em formato JSON
     body: JSON.stringify({ // converte os dados para string JSON e os envia no corpo da requisição

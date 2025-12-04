@@ -4,18 +4,23 @@ const desfazer = document.getElementById("desfazer");
 const responsavel = document.getElementById("responsavel");
 const apagar = document.getElementById("desfazer");
 
-// // Quando clicar no botão "Histórico", abre o painel
-// const btnHistorico = document.querySelector(
-//   '#icon img[alt="config"]' //pega o img dentro do id icon que tem alt config
-// ).parentElement; //pega o elemento pai que é o botão
-// btnHistorico.addEventListener("click", () => { //adiciona o evento de clique
-//   document.getElementById("painelHistorico").classList.add("ativo"); //adiciona a classe ativo ao painel
-// });
+// Quando clicar no botão "Histórico", abre o painel
+const btnHistorico = document.querySelector(
+  '#icon img[alt="config"]' //pega o img dentro do id icon que tem alt config
+).parentElement; //pega o elemento pai que é o botão
+btnHistorico.addEventListener("click", () => { 
+  const id_Historico = localStorage.getItem('id_usuario')
+  const id_int = parseInt(id_Historico, 10)
+  GerarHistorico(id_int)
+  document.getElementById("painelHistorico").classList.add("ativo");
 
-// // Função pra fechar o painel
-// function fecharHistorico() { //função chamada no HTML
-//   document.getElementById("painelHistorico").classList.remove("ativo"); //remove a classe ativo do painel
-// }
+});
+
+// Função pra fechar o painel
+function fecharHistorico() { //função chamada no HTML
+  document.getElementById("painelHistorico").classList.remove("ativo");
+  
+}
 
 const btnADClista = document.querySelector(".bot"); //botão de adicionar lista
 btnADClista.addEventListener("click", async () => {
@@ -23,7 +28,7 @@ btnADClista.addEventListener("click", async () => {
   const modal = document.querySelector("dialog.painel");
 
   responsavel.innerHTML = "";
-  const result = await fetch("http://192.168.1.22:3000/ListarUsers");
+  const result = await fetch("http://localhost:3000/ListarUsers");
   const resultados = await result.json();
   resultados.forEach((m) => {
     const option = document.createElement("option");
@@ -93,7 +98,7 @@ function abrirabas(botaoClicado) {
 }
 async function renderAtiv(setor) {
   console.log(setor);
-  const result = await fetch(`http://192.168.1.22:3000/MostrarTarefa/${setor}`);
+  const result = await fetch(`http://localhost:3000/MostrarTarefa/${setor}`);
   const resultados = await result.json();
   const tarefas = document.querySelector("#tarefas");
   tarefas.innerHTML = "";
@@ -162,7 +167,7 @@ salvar.addEventListener("click", async () => {
     return;
   }
 
-  const res = await fetch("http://192.168.1.22:3000/checklist", {
+  const res = await fetch("http://localhost:3000/checklist", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -183,7 +188,7 @@ salvar.addEventListener("click", async () => {
 });
 
 async function deletar(id) {
-  const res = await fetch(`http://192.168.1.22:3000/Apagar_req/${id}`, {
+  const res = await fetch(`http://localhost:3000/Apagar_req/${id}`, {
     method: "DELETE",
   });
 
@@ -223,7 +228,7 @@ async function editar(id) {
   const formattedDate_prazo = `${year_prazo}-${day_prazo}-${month_prazo}T00:00`;
   document.querySelector("#prazo").value = formattedDate_prazo;
 
-  const result = await fetch("http://192.168.1.22:3000/ListarUsers");
+  const result = await fetch("http://localhost:3000/ListarUsers");
   const resultados = await result.json();
   const pessoa_responsavel = document.querySelector(`#destinatario_${id}`);
   resultados.forEach((m) => {
@@ -250,15 +255,7 @@ async function editar(id) {
     const localizacao = document.querySelector("#local").value;
     const urgencia = document.querySelector("#nivel").value;
     const prazo = document.querySelector("#prazo").value;
-    console.log(funcao,
-        data,
-        localizacao,
-        urgencia,
-        id_usuario,
-        prazo,
-        responsavel)
-
-    const res = await fetch(`http://192.168.1.22:3000/Editar_Req/${id}`, {
+    const res = await fetch(`http://localhost:3000/Editar_Req/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -277,4 +274,21 @@ async function editar(id) {
     fecharAdicionarLista();
     
   });
+}
+
+
+//Inicio da area de historico. Inicio dia 04/12/2025
+
+async function GerarHistorico(id) {
+  const historico = document.getElementById("painelHistorico")
+  const Busca = await fetch(`http://localhost:3000/Historico/${id}`);
+  const resultadosBusca = await Busca.json();
+
+resultadosBusca.forEach((m)=>{
+  const div = document.createElement('div')
+  div.innerHTML = ` 
+      <p>Requisição feita dia ${m.data_requisicao}</P>
+    `;
+  historico.appendChild(div)
+})
 }

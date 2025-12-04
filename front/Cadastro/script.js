@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => { // garante que o código d
       return
     }
 
-    const res = await fetch("http://192.168.1.22:3000/cadastro/novo", { // faz uma requisição para a URL fornecida
+    const res = await fetch("http://localhost:3000/cadastro/novo", { // faz uma requisição para a URL fornecida
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

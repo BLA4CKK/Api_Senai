@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    const res = await fetch("http://192.168.1.22:3000/mudarSenha", { // faz uma requisição para a URL fornecida
+    const res = await fetch("http://localhost:3000/mudarSenha", { // faz uma requisição para a URL fornecida
       method: "PUT", //atualizar 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

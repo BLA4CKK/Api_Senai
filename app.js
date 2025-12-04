@@ -15,7 +15,7 @@ app.post("/cadastro/novo", async (req, res) => { // define uma rota POST para a 
   const { senha, nome, email, cargo } = req.body; // pega os dados do corpo da requisição (senha, nome, email, cargo)
   console.log("cadastrado"); //mostra no console a mensagem "cadastrado"
   const cadastro = // cria uma constante 'cadastro' que armazena o resultado da consulta SQL
-    await sql`INSERT INTO USUARIO(email, nome, cargo, senha ) values(${email}, ${nome}, ${cargo}, ${senha} )`; // armazena no banco de dados os dados do novo usuário
+    await sql`INSERT INTO usuario(email, nome, cargo, senha ) values(${email}, ${nome}, ${cargo}, ${senha} )`; // armazena no banco de dados os dados do novo usuário
   return res.status(200).json(cadastro[0]); //retorna uma resposta de sucesso com os dados do usuário em formato JSON
 });
 
@@ -36,19 +36,17 @@ app.post("/login/", async (req, res) => { // define uma rota POST para a URL "/l
   }
 });
 
-app.put("/mudarSenha", async (req, res) => { // define uma rota PUT para a URL "/mudarSenha"
-  const { senha, senha_N, id_usuario } = req.body; // pega os dados do corpo da requisição (senha atual, nova senha e id do usuario)
+app.put("/mudarSenha", async (req, res) => {  
+  const { senha, senha_N, id_usuario } = req.body;
 
-  const trocar = await sql`SELECT senha FROM usuario where id_usuario = ${id_usuario} and senha = ${senha}`; // cria uma constante 'trocar' que armazena o resultado da consulta SQL para verificar se a senha atual corresponde ao id do usuario
+  const trocar = await sql`SELECT senha FROM usuario where id_usuario = ${id_usuario} and senha = ${senha}`;
 
-  if (trocar.length != 0) { // se for verdadeiro (ou seja, a senha atual corresponde)
-    await sql`UPDATE usuario SET senha = ${senha_N} WHERE id_usuario = ${id_usuario};`; // atualiza a senha do usuario no banco de dados para a nova senha
-    return res.status(201).json({message : "teste"}); //retorna uma resposta de sucesso
+  if (trocar.length != 0) {
+    await sql`UPDATE usuario SET senha = ${senha_N} WHERE id_usuario = ${id_usuario};`
+    return res.status(201).json({message : "teste"});
   }
-  return res.status(401).json({ message: "bla" }); // se for falso, retona uma mensagem de erro
+  return res.status(401).json({ message: "bla" });
 })
-
-// nesse trecho estamos definindo uma rota para mudar a senha do usuario, verificando se a senha atual corresponde ao id do usuario, atualizando a senha no banco de dados e retornando uma resposta de sucesso ou mensagem de erro conforme o caso.
 
 app.post("/checklist", async (req, res) => {
   const { funcao, data, localizacao, urgencia, id_usuario, prazo, responsavel} = req.body 
@@ -57,8 +55,6 @@ app.post("/checklist", async (req, res) => {
   return res.status(200).json(criar[0])
 })
 
-// nesse trecho estamos definindo uma rota para criar uma nova requisição no banco de dados, pegando os dados do corpo da requisição e inserindo no banco, retornando uma resposta de sucesso.
-
 app.get("/MostrarTarefa/:cargo", async (req, res) => {
   const {cargo} = req.params
   const mostrar = await sql `SELECT * FROM requisicao 
@@ -66,12 +62,9 @@ where requisicao.localizacao = ${cargo}`
  return res.status(200).json(mostrar)
 })
 
-// nesse trecho estamos definindo uma rota para mostrar as tarefas de acordo com o cargo, pegando o parâmetro da URL e selecionando as requisições no banco de dados, retornando uma resposta de sucesso com os dados.
-
-app.get("/ListarUsers", async (req, res) => {  // define uma rota GET para a URL "/ListarUsers"
-  const listar = await sql `SELECT id_usuario, nome FROM usuario;` // cria uma constante 'listar' que armazena o resultado da consulta SQL para selecionar o id e nome de todos os usuarios no banco de dados
-  return res.status(200).json(listar) //retorna uma resposta de sucesso com os dados dos usuarios em formato JSON
-
+app.get("/ListarUsers", async (req, res) => { 
+  const listar = await sql `SELECT id_usuario, nome FROM usuario;`
+  return res.status(200).json(listar)
 })
 
 app.delete("/Apagar_Req/:id", async(req, res)=>{
@@ -91,6 +84,13 @@ app.put("/Editar_Req/:id", async (req, res) => {
   return res.status(200).json(editar)
 })
 
-app.listen(3000, () => { // inicia o servidor na porta 3000
+app.get("/Historico/:id", async (req, res) => {
+  const {id} = req.params
+  const buscar = await sql `SELECT * from requisicao where id_usuario = ${id}
+`
+  return res.status(200).json(buscar)
+})
+
+app.listen(3000, () => {
   console.log("Cu");
 });

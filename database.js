@@ -1,5 +1,9 @@
-import postgres from "postgres"; // importa o módulo 'postgres' para conectar ao banco de dados PostgreSQL
+import postgres from "postgres";
 
-const sql = postgres("postgres://user:user@192.168.1.15:5433/heloisa") // cria uma constante 'sql' que representa a conexão com o banco de dados PostgreSQL usando a string de conexão fornecida
+const sql = postgres("postgres://postgres:user@localhost:5432/postgres")
 
-export default sql; // exporta a constante 'sql' para que possa ser usada em outros arquivos do projeto
+export default sql;
+
+/*DATABASE_URL=postgresql://postgres:[YOUR_PASSWORD]@db.iebtulnkywfqmnksvrvm.supabase.co:5432/postgres 
+postgres://user:user@192.168.1.15:5433/heloisa
+*/
