@@ -281,7 +281,7 @@ p {
 
 #info {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 2fr 2fr 2fr 2fr 1fr 1fr;
   gap: 10px;
   background-color: #ffffff;
   padding: 10px;
@@ -289,14 +289,15 @@ p {
 }
 .tarefas {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 1fr;
+  grid-template-columns: 2fr 2fr 2fr 2fr 2fr 1fr 1fr;
   gap: 10px;
   background-color: #ffffff;
   padding: 10px;
   border-radius: 10px;
+  text-align: center;
 }
 .tarefas p {
-  margin: 0;
+  margin: 5px;
   padding: 8px;
   border-radius: 5px;
   text-align: center;
@@ -338,4 +339,16 @@ p {
   border-bottom: none;
   background-color: #ededed;
   color:black
+}
+.btn-delete {
+  border: none;
+  cursor: pointer;
+  background-color: #ff0000;
+  padding: 5px 5px;  
+} 
+.btn-edit {
+  
+  cursor: pointer;
+  background-color: #ffff00;
+  padding: 5px 5px;  
 }

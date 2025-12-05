@@ -8,7 +8,7 @@ const apagar = document.getElementById("desfazer");
 const btnHistorico = document.querySelector(
   '#icon img[alt="config"]' //pega o img dentro do id icon que tem alt config
 ).parentElement; //pega o elemento pai que é o botão
-btnHistorico.addEventListener("click", () => { 
+btnHistorico.addEventListener("click", () => {
   const id_Historico = localStorage.getItem('id_usuario')
   const id_int = parseInt(id_Historico, 10)
   GerarHistorico(id_int)
@@ -19,7 +19,7 @@ btnHistorico.addEventListener("click", () => {
 // Função pra fechar o painel
 function fecharHistorico() { //função chamada no HTML
   document.getElementById("painelHistorico").classList.remove("ativo");
-  
+ 
 }
 
 const btnADClista = document.querySelector(".bot"); //botão de adicionar lista
@@ -121,14 +121,15 @@ async function renderAtiv(setor) {
 
     const caixa = document.createElement("div"); //cria uma div para a tarefa
     caixa.classList = "tarefas"; //define a classe da div como tarefas
-    caixa.innerHTML = ` 
+    caixa.innerHTML = `
       <p id="funcao_${m.id_requisicao}">${m.funcao}</p>
       <p id="data_${m.id_requisicao}">${dataFormatada}</p>
       <p id="destinatario_${m.id_requisicao}">${m.destinatario_req}</p>
       <p id="localizacao_${m.id_requisicao}">${m.localizacao}</p>
       <p id="prazo_${m.id_requisicao}">${prazoFormatado}</p>
-      <button onclick="deletar(${m.id_requisicao})">🗑</button>
-      <button onclick="editar(${m.id_requisicao})">🖊</button>
+      <button class="btn-delete" onclick="deletar(${m.id_requisicao})">🗑</button>
+      <button class="btn-edit" onclick="editar(${m.id_requisicao})">🖊</button>
+
     `; //adiciona o conteúdo da tarefa à div
 
     // Define a cor de fundo com base no nível de urgência
@@ -195,7 +196,7 @@ async function deletar(id) {
   if (res.status == 200) {
     alert("Excluido");
    return location.reload()
-    
+   
   }
 }
 
@@ -242,9 +243,9 @@ async function editar(id) {
     responsavel.appendChild(option);
   });
 
-  
+ 
 
-  
+ 
   // document.querySelector("#nivel").value = document.querySelector(`#data_${id}`);
   // document.querySelector("#local").value = document.querySelector(`#localizacao_${id}`).innerText;
 
@@ -272,7 +273,7 @@ async function editar(id) {
       return location.reload()
     }
     fecharAdicionarLista();
-    
+   
   });
 }
 
@@ -280,17 +281,16 @@ async function editar(id) {
 //Inicio da area de historico. Inicio dia 04/12/2025
 
 async function GerarHistorico(id) {
-  const historico = document.querySelector(".cards_hist")
+  const historico = document.getElementById("painelHistorico")
   const Busca = await fetch(`http://localhost:3000/Historico/${id}`);
   const resultadosBusca = await Busca.json();
 
 resultadosBusca.forEach((m)=>{
   const div = document.createElement('div')
-  div.classList = "ConteudoHistorico"
-  
   div.innerHTML = `
       <p>Requisição feita dia ${m.data_requisicao}</P>
     `;
   historico.appendChild(div)
 })
 }
+
