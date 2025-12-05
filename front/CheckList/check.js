@@ -280,13 +280,15 @@ async function editar(id) {
 //Inicio da area de historico. Inicio dia 04/12/2025
 
 async function GerarHistorico(id) {
-  const historico = document.getElementById("painelHistorico")
+  const historico = document.querySelector(".cards_hist")
   const Busca = await fetch(`http://localhost:3000/Historico/${id}`);
   const resultadosBusca = await Busca.json();
 
 resultadosBusca.forEach((m)=>{
   const div = document.createElement('div')
-  div.innerHTML = ` 
+  div.classList = "ConteudoHistorico"
+  
+  div.innerHTML = `
       <p>Requisição feita dia ${m.data_requisicao}</P>
     `;
   historico.appendChild(div)
